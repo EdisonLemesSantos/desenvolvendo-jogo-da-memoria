@@ -1,0 +1,82 @@
+* {/*CSS Jogo da memória DIO*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    background-color: rgb(188, 248, 228);
+}
+
+.memory-game {
+    height: 640px;
+    width: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px; /* perspectiva do usuario no eixo z, quanto maior, maior o efeito da perspectiva */
+}
+
+.card {
+    height: calc( 33.333% - 10px);
+    width: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    cursor: pointer;
+    transform: scale(1);
+    transform-style: preserve-3d; /* adiciona perspectiva 3d, para que o elemento nao fique achatada no plano */
+    transition: transform .9s; /* adiciona efeito de movimento ao flip do card */
+}
+
+.card:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: rgb(92, 187, 182);
+  backface-visibility: hidden; /* todo elemento tem uma frente e um verso (ao contrario, como um espelho.) essa propriedade retira o verso */
+}
+
+.card-front {
+    transform: rotateY(180deg); /* antes, o verso aparecia transparente, pois ambas as imagens tem position absolute, ao girar no eixo Y, elas ficaram com os versos virados */
+}
+
+/* flip card animation */
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+/* button */
+.divButton {
+    left: 180px;
+    top: -110px; /*Controla posição do elemento <div class="button"> */
+    position: absolute;
+}
+.buttonReload {
+    /* Ajuste da fonte do elemento button class="reload" */
+    font-size: 65px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: rgba(250, 249, 249, 0.0);
+    /* imagens e ajustes do elemento button class="reload" */
+    border: inherit;
+    padding: 8px 0px;/* 80px para ajuste da largura */
+    text-align: center;
+    background-image: url('img/block.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.buttonReload:hover {
+    color: #ff061b;
+    background-color: #6bd3d1;
+}
